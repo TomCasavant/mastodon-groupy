@@ -1,0 +1,8 @@
+[mastodon]
+server = "https://tomkahe.com"
+access_token = ""
+
+[bot]
+communities = [
+  "@technology@lemmy.world"
+]
