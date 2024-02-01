@@ -81,7 +81,7 @@ class Bot:
       time.sleep(60*10)
 
 
-  def on_update(status):
+  def on_update(self, status):
     if (not status['reblogged'] and self.is_post(status)):
       print("Boosting status")
       self.matodon.status_reblog(status['id'])
@@ -89,8 +89,8 @@ class Bot:
       print ("Not boostable")
 
   def stream_timeline(self):
-    print(self.mastodon.retrieve_mastodon_version())
-    print(self.mastodon._Mastodon__instance())
+#   print(self.mastodon.retrieve_mastodon_version())
+#    print(self.mastodon._Mastodon__instance())
     listener = CallbackStreamListener(update_handler = self.on_update)
     #print(self.mastodon.retrieve_mastodon_version())
     #self.mastodon.stream_user( { 'update': self.on_update }, run_async=False)
