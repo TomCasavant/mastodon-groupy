@@ -23,7 +23,8 @@ class Bot:
   '''
   def is_post(self, status) -> bool:
     print(status.get('in_reply_to_id'))
-    return not status.get('reblog').get('in_reply_to_id')
+
+    return status.get('reblog') and not status.get('reblog').get('in_reply_to_id')
 
 #  def follow_config(self) -> None:
 #    communities = self.bot_config.get('communities')
@@ -38,6 +39,7 @@ class Bot:
     users_to_follow = self.bot_config.get('communities')
     for user in users_to_follow:
       # Get account ID from username
+      print(f"Attempting to follow {user}")
       account = self.mastodon.account_search(user)[0]
       account_id = account['id']
       # Follow the user
@@ -84,7 +86,7 @@ class Bot:
   def on_update(self, status):
     if (not status['reblogged'] and self.is_post(status)):
       print("Boosting status")
-      self.matodon.status_reblog(status['id'])
+      self.mastodon.status_reblog(status['id'])
     else:
       print ("Not boostable")
 
@@ -94,8 +96,9 @@ class Bot:
     listener = CallbackStreamListener(update_handler = self.on_update)
     #print(self.mastodon.retrieve_mastodon_version())
     #self.mastodon.stream_user( { 'update': self.on_update }, run_async=False)
-    self.mastodon.stream_user(listener)
+    self.mastodon.stream_user(listener, timeout=1200, reconnect_async=True)
 
 if __name__ == "__main__":
   bot = Bot()
+  bot.follow_config()
   bot.stream_timeline()
