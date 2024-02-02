@@ -19,9 +19,22 @@ class Bot:
 
   '''
      Returns true if status is top level (a post), false otherwise (a comment)
+     Lemmy Post: /post/POST-ID
+     Lemmy Comment: /comment/COMMENT-ID
+     kbin/mbin post: /m/COMMUNITY/t/POST-ID/POST-NAME
+     kbin/mbin comment:  /m/COMMUNITY/t/POST-ID/POST-NAME#entry-comment-COMMENTID
+     Piefed Post: /post/POST-ID
+     Piefed Comment: /post/POST-ID/comment/COMMENT-ID/
   '''
   def is_post(self, status) -> bool:
-    return status.get('reblog') and '/post/' in status.get('reblog').get('url')
+    if (not status.get('reblog')):
+      # This was not boosted by a community account
+      return False
+    url = status.get('reblog').get('url')
+    if '/comment/' in url or '#entry-comment-' in url:
+     return False
+    return True
+
 
   '''
     Loops through all communities from config, attempts to search for and follow account
