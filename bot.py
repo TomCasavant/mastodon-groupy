@@ -33,8 +33,8 @@ class Bot:
     url = status.get('reblog').get('url')
     if '/comment/' in url or '#entry-comment-' in url:
       return False
-    if not 'post' not in url:
-      if not '/t/' not in url:
+    if 'post' not in url:
+      if '/t/' not in url:
         return False
     return True
 
