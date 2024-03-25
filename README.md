@@ -7,3 +7,5 @@ Follows a set of link aggregator communities provided in the config.toml, checks
 
 
 *May also fix kbin/mbin/piefed federation, I am not certain if those experience the same issues. I tried testing with some federated kbin communities, but I'm not entirely certain how to differentiate between a community and a user from mastodon. e.g. [@TodayILearned@kbin.social](https://kbin.social/search?q=%40todayilearned%40kbin.social) seems to reference both a user and a community and I can only follow the user from mastodon 
+
+[![Follow @groupy@tomkahe.com](https://fedi-badge.deno.dev/@groupy@tomkahe.com/followers.svg?style=plastic)](https://tomkahe.com/@groupy)
