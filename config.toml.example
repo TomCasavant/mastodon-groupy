@@ -1,8 +1,18 @@
 [mastodon]
 server = "https://tomkahe.com"
 access_token = ""
+display_name = "Groupy"
+bio_preface = "Hello! I am a bot that attempts to fix lemmy federation with mastodon I boost just the posts (no comments) from these communities: "
+bio_appendix = ""
+[[mastodon.profile_field]]
+descriptor = "Maintainer"
+value = ""
+[[mastodon.profile_field]]
+descriptor = "Repo"
+value = "https://github.com/TomCasavant/mastodon-groupy"
 
 [bot]
 communities = [
-  "@technology@lemmy.world"
+  "@technology@lemmy.world",
+  "@til@lemmy.world"
 ]
